@@ -50,9 +50,7 @@ export default function SignIn({
         {
           email: formData.email,
           password: formData.password,
-          callbackURL: NEXT_PUBLIC_BASE_PATH + "/",
-          errorCallbackURL: NEXT_PUBLIC_BASE_PATH + "/",
-          newUserCallbackURL: NEXT_PUBLIC_BASE_PATH + "/",
+          callbackURL: NEXT_PUBLIC_BASE_PATH + "/"
         },
         {
           onError(ctx) {
