@@ -15,7 +15,7 @@ import { getAuthConfig } from "./config";
 
 import logger from "logger";
 import { redirect } from "next/navigation";
-import { NEXT_PUBLIC_BASE_PATH, NEXT_PUBLIC_BASE_URL } from "lib/const";
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
 
 const {
   emailAndPasswordEnabled,
@@ -25,7 +25,8 @@ const {
 
 export const auth = betterAuth({
   plugins: [nextCookies()],
-  baseURL: NEXT_PUBLIC_BASE_URL + NEXT_PUBLIC_BASE_PATH,
+  baseURL: undefined,
+  basePath: NEXT_PUBLIC_BASE_PATH + "/api/auth",
   database: drizzleAdapter(pgDb, {
     provider: "pg",
     schema: {
