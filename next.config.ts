@@ -18,6 +18,14 @@ export default () => {
     env: {
       NO_HTTPS: process.env.NO_HTTPS,
     },
+    async rewrites() {
+      return [
+        {
+          source: `${NEXT_PUBLIC_BASE_PATH}/api/auth/:path*`,
+          destination: '/api/auth/:path*'
+        }
+      ]
+    },
     assetPrefix: NEXT_PUBLIC_BASE_PATH + "/",
     basePath: NEXT_PUBLIC_BASE_PATH,
     experimental: {
