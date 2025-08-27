@@ -8,12 +8,14 @@ import { mutate } from "swr";
 import { swrKey } from "lib/utils";
 import { safe } from "ts-safe";
 
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
+
 export function useGenerateThreadTitle(option: {
   threadId: string;
   chatModel?: ChatModel;
 }) {
   const { complete, completion } = useCompletion({
-    api: "/api/chat/title",
+    api: NEXT_PUBLIC_BASE_PATH + "/api/chat/title",
   });
 
   const updateTitle = useCallback(

@@ -149,7 +149,7 @@ export function useOpenAIVoiceChat(
 
   const createSession =
     useCallback(async (): Promise<OpenAIRealtimeSession> => {
-      const response = await fetch(
+      const response = await fetcher(
         `/api/chat/openai-realtime?model=${model}&voice=${voice}`,
         {
           method: "POST",

@@ -41,6 +41,8 @@ import { DialogTitle } from "@radix-ui/react-dialog";
 import { Textarea } from "ui/textarea";
 import { Think } from "ui/think";
 
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
+
 export function ChatBotTemporary() {
   const t = useTranslations("Chat.TemporaryChat");
 
@@ -70,7 +72,7 @@ export function ChatBotTemporary() {
     stop,
   } = useChat({
     transport: new DefaultChatTransport({
-      api: "/api/chat/temporary",
+      api: NEXT_PUBLIC_BASE_PATH + "/api/chat/temporary",
       prepareSendMessagesRequest: ({ messages }) => {
         const temporaryChat = appStore.getState().temporaryChat;
         return {

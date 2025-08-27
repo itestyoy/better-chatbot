@@ -21,6 +21,8 @@ import { getShortcutKeyList, Shortcuts } from "lib/keyboard-shortcuts";
 import { useTranslations } from "next-intl";
 import { TextShimmer } from "ui/text-shimmer";
 
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
+
 export function AppHeader() {
   const t = useTranslations();
   const [appStoreMutate] = appStore(useShallow((state) => [state.mutate]));
@@ -28,7 +30,7 @@ export function AppHeader() {
   const currentPaths = usePathname();
 
   const componentByPage = useMemo(() => {
-    if (currentPaths.startsWith("/chat/")) {
+    if (currentPaths.startsWith(NEXT_PUBLIC_BASE_PATH + "/chat/")) {
       return <ThreadDropdownComponent />;
     }
   }, [currentPaths]);
