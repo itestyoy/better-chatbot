@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { JSONSchema7 } from "json-schema";
 import { twMerge } from "tailwind-merge";
-import { mutate as baseMutate } from "swr";
+import { useSWRConfig } from 'swr';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -10,7 +10,8 @@ export function cn(...inputs: ClassValue[]) {
 const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
 
 export function mutate(path: string, data?: any, shouldRevalidate?: boolean) {
-  return baseMutate(`${BASE_PATH}${path}`, data, shouldRevalidate);
+  const { mutate } = useSWRConfig();
+  return mutate(`${BASE_PATH}${path}`, data, shouldRevalidate);
 }
 
 export const fetcher = async (url: string, options?: RequestInit) => {
