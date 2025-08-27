@@ -32,7 +32,6 @@ import { createDebounce, fetcher, generateUUID } from "lib/utils";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import useSWR from "swr";
 import { safe } from "ts-safe";
-import { fetcher } from "lib/utils";
 
 const nodeTypes = {
   default: DefaultNode,
