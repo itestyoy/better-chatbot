@@ -23,6 +23,7 @@ import { GoogleIcon } from "ui/google-icon";
 import { useTranslations } from "next-intl";
 import { MicrosoftIcon } from "ui/microsoft-icon";
 import { SocialAuthenticationProvider } from "app-types/authentication";
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
 
 export default function SignIn({
   emailAndPasswordEnabled,
@@ -49,7 +50,9 @@ export default function SignIn({
         {
           email: formData.email,
           password: formData.password,
-          callbackURL: "/",
+          callbackURL: NEXT_PUBLIC_BASE_PATH + "/",
+          errorCallbackURL: NEXT_PUBLIC_BASE_PATH + "/",
+          newUserCallbackURL: NEXT_PUBLIC_BASE_PATH + "/",
         },
         {
           onError(ctx) {
@@ -63,7 +66,12 @@ export default function SignIn({
   };
 
   const handleSocialSignIn = (provider: SocialAuthenticationProvider) => {
-    authClient.signIn.social({ provider }).catch((e) => {
+    authClient.signIn.social({ 
+      provider,
+      callbackURL: NEXT_PUBLIC_BASE_PATH + "/",
+      errorCallbackURL: NEXT_PUBLIC_BASE_PATH + "/",
+      newUserCallbackURL: NEXT_PUBLIC_BASE_PATH + "/",
+    }).catch((e) => {
       toast.error(e.error);
     });
   };
