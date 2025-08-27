@@ -25,7 +25,7 @@ const {
 
 export const auth = betterAuth({
   plugins: [nextCookies()],
-  baseURL: NEXT_PUBLIC_BASE_URL,
+  baseURL: NEXT_PUBLIC_BASE_URL + NEXT_PUBLIC_BASE_PATH,
   database: drizzleAdapter(pgDb, {
     provider: "pg",
     schema: {
