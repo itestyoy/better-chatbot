@@ -58,7 +58,7 @@ export default defineConfig({
 
   webServer: {
     command: "pnpm start",
-    url: "http://localhost:3000",
+    url: NEXT_PUBLIC_BASE_URL,
     reuseExistingServer: !process.env.CI,
     timeout: 180 * 1000, // 3 minutes for build and start
     stdout: "pipe",
