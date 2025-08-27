@@ -6,5 +6,5 @@ const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
 const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
 
 export const authClient = createAuthClient({
-    baseURL: NEXT_PUBLIC_BASE_URL + BASE_PATH,
+    baseURL: NEXT_PUBLIC_BASE_URL + BASE_PATH + "/api/auth",
 });
