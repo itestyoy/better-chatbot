@@ -7,7 +7,9 @@ import { ArrowUpRight, ChevronDown, MousePointer2 } from "lucide-react";
 import { Card, CardDescription, CardHeader, CardTitle } from "ui/card";
 import { Button } from "ui/button";
 import useSWR from "swr";
-import { mutate, fetcher } from "lib/utils";
+import { fetcher } from "lib/utils";
+import { mutate } from "swr";
+import { swrKey } from "lib/utils";
 import { Skeleton } from "ui/skeleton";
 import { BackgroundPaths } from "ui/background-paths";
 import { ShareableCard } from "@/components/shareable-card";
@@ -91,7 +93,7 @@ export default function WorkflowPage() {
     edges: Partial<DBEdge>[];
   }) => {
     const workflowId = await createWithExample(exampleWorkflow);
-    mutate("/api/workflow");
+    mutate(swrKey("/api/workflow"));
     router.push(`/workflow/${workflowId}`);
   };
 
@@ -110,7 +112,7 @@ export default function WorkflowPage() {
       if (!response.ok) throw new Error("Failed to update visibility");
 
       // Refresh the workflows data
-      mutate("/api/workflow");
+      mutate(swrKey("/api/workflow"));
       toast.success(t("Workflow.visibilityUpdated"));
     } catch {
       toast.error(t("Common.error"));
@@ -133,7 +135,7 @@ export default function WorkflowPage() {
 
       if (!response.ok) throw new Error("Failed to delete workflow");
 
-      mutate("/api/workflow");
+      mutate(swrKey("/api/workflow"));
       toast.success(t("Workflow.deleted"));
     } catch (_error) {
       toast.error(t("Common.error"));

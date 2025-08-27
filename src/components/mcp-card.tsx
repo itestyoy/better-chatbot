@@ -18,7 +18,8 @@ import JsonView from "ui/json-view";
 import { Tooltip, TooltipContent, TooltipTrigger } from "ui/tooltip";
 import { memo, useCallback, useMemo, useState } from "react";
 import Link from "next/link";
-import { mutate } from "lib/utils";
+import { mutate } from "swr";
+import { swrKey } from "lib/utils";
 import { safe } from "ts-safe";
 
 import { handleErrorWithToast } from "ui/shared-toast";
@@ -67,7 +68,7 @@ export const MCPCard = memo(function MCPCard({
     async (fn: () => Promise<any>) =>
       safe(() => setIsProcessing(true))
         .ifOk(fn)
-        .ifOk(() => mutate("/api/mcp/list"))
+        .ifOk(() => mutate(swrKey("/api/mcp/list")))
         .ifFail(handleErrorWithToast)
         .watch(() => setIsProcessing(false)),
     [],

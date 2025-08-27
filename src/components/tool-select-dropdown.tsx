@@ -71,7 +71,8 @@ import { authClient } from "auth/client";
 
 import { Alert, AlertDescription, AlertTitle } from "ui/alert";
 import { safe } from "ts-safe";
-import { mutate } from "lib/utils";
+import { mutate } from "swr";
+import { swrKey } from "lib/utils";
 import { handleErrorWithToast } from "ui/shared-toast";
 import { useAgents } from "@/hooks/queries/use-agents";
 import { redriectMcpOauth } from "lib/ai/mcp/oauth-redirect";
@@ -733,7 +734,7 @@ function McpServerToolSelector({
     () =>
       safe(() => setLoading(true))
         .map(() => redriectMcpOauth(serverId))
-        .ifOk(() => mutate("/api/mcp/list"))
+        .ifOk(() => mutate(swrKey("/api/mcp/list")))
         .ifFail(handleErrorWithToast)
         .watch(() => setLoading(false)),
 

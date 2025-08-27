@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useSWRConfig } from "swr";
-import { fetcher } from "lib/utils";
+import { fetcher, swrKey } from "lib/utils";
 
 export interface BookmarkItem {
   id: string;
@@ -48,8 +48,8 @@ export function useBookmark(options: UseBookmarkOptions = {}) {
           if (typeof key !== "string") return false;
           // Update list endpoints but not individual item details
           return (
-            key.startsWith(`/api/${itemType}`) &&
-            !key.match(new RegExp(`/api/${itemType}/[^/?]+$`))
+            key.startsWith(swrKey(`/api/${itemType}`)) &&
+            !key.match(new RegExp(swrKey(`/api/${itemType}/[^/?]+$`)))
           );
         },
         (cachedData: any) => {
@@ -74,7 +74,7 @@ export function useBookmark(options: UseBookmarkOptions = {}) {
 
       // Also update individual item cache
       await mutate(
-        `/api/${itemType}/${id}`,
+        swrKey(`/api/${itemType}/${id}`),
         (cachedData: any) => {
           if (!cachedData) return cachedData;
           return { ...cachedData, isBookmarked: !isBookmarked };

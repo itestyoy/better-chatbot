@@ -29,7 +29,7 @@ import {
 import { useTheme } from "next-themes";
 import { appStore } from "@/app/store";
 import { BASE_THEMES, COOKIE_KEY_LOCALE, SUPPORTED_LOCALES } from "lib/const";
-import { capitalizeFirstLetter, cn } from "lib/utils";
+import { capitalizeFirstLetter, cn, swrKey } from "lib/utils";
 import { authClient } from "auth/client";
 import { useTranslations } from "next-intl";
 import useSWR from "swr";
@@ -55,7 +55,7 @@ export function AppSidebarUser({
   };
 
   useSWR(
-    "/session-update",
+    swrKey("/session-update"),
     () =>
       authClient.getSession().then(() => {
         console.log(`session-update: ${new Date().toISOString()}`);

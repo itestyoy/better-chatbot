@@ -34,7 +34,8 @@ import { handleErrorWithToast } from "ui/shared-toast";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { cn, createDebounce } from "lib/utils";
-import { mutate } from "lib/utils";
+import { mutate } from "swr";
+import { swrKey } from "lib/utils";
 import { useTranslations } from "next-intl";
 import { BACKGROUND_COLORS } from "lib/const";
 import { fetcher } from "lib/utils";
@@ -124,7 +125,7 @@ export function EditWorkflowPopup({
         })
         .ifOk((workflow) => {
           onOpenChange?.(false);
-          mutate("/api/workflow");
+          mutate(swrKey("/api/workflow"));
           if (submitAfterRoute) {
             router.push(`/workflow/${workflow.id}`);
           }

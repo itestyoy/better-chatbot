@@ -30,7 +30,8 @@ import { toast } from "sonner";
 import { useShallow } from "zustand/shallow";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
-import { mutate } from "lib/utils";
+import { mutate } from "swr";
+import { swrKey } from "lib/utils";
 import { handleErrorWithToast } from "ui/shared-toast";
 import { useMemo, useState } from "react";
 
@@ -151,7 +152,7 @@ export function AppSidebarThreads() {
     await toast.promise(deleteThreadsAction(), {
       loading: t("deletingAllChats"),
       success: () => {
-        mutate("/api/thread");
+        mutate(swrKey("/api/thread"));
         router.push("/");
         return t("allChatsDeleted");
       },
@@ -163,7 +164,7 @@ export function AppSidebarThreads() {
     await toast.promise(deleteUnarchivedThreadsAction(), {
       loading: t("deletingUnarchivedChats"),
       success: () => {
-        mutate("/api/thread");
+        mutate(swrKey("/api/thread"));
         router.push("/");
         return t("unarchivedChatsDeleted");
       },

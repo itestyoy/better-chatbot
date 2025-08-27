@@ -2,7 +2,7 @@
 import { appStore } from "@/app/store";
 import useSWR, { SWRConfiguration, useSWRConfig } from "swr";
 import { handleErrorWithToast } from "ui/shared-toast";
-import { fetcher } from "lib/utils";
+import { fetcher, swrKey } from "lib/utils";
 import { AgentSummary } from "app-types/agent";
 import { authClient } from "auth/client";
 
@@ -94,7 +94,8 @@ export function useMutateAgents() {
         if (typeof key !== "string") return false;
         // Match /api/agent or /api/agent?... but not /api/agent/id
         return (
-          key.startsWith("/api/agent") && !key.match(/\/api\/agent\/[^/?]+/)
+          key.startsWith(swrKey("/api/agent")) && 
+          !key.match(new RegExp(swrKey(`/api/agent/[^/?]+$`)))
         );
       },
       (cachedData: any) => {
@@ -133,13 +134,13 @@ export function useMutateAgents() {
     if (updatedAgent?.id) {
       if (deleteAgent) {
         // For deleted agents, invalidate the individual cache
-        mutate(`/api/agent/${updatedAgent.id}`, undefined, {
+        mutate(swrKey(`/api/agent/${updatedAgent.id}`), undefined, {
           revalidate: true,
         });
       } else {
         // For updated agents, update the individual cache
         mutate(
-          `/api/agent/${updatedAgent.id}`,
+          swrKey(`/api/agent/${updatedAgent.id}`),
           (cachedData: any) => {
             if (!cachedData) return cachedData;
             return { ...cachedData, ...updatedAgent };

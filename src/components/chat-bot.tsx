@@ -19,7 +19,8 @@ import {
 } from "ai";
 
 import { safe } from "ts-safe";
-import { mutate } from "lib/utils";
+import { mutate } from "swr";
+import { swrKey } from "lib/utils";
 import { ChatApiSchemaRequestBody, ChatModel } from "app-types/chat";
 import { useToRef } from "@/hooks/use-latest";
 import { isShortcutEvent, Shortcuts } from "lib/keyboard-shortcuts";
@@ -116,7 +117,7 @@ export default function ChatBot({ threadId, initialMessages }: Props) {
         generateTitle(part.join("\n\n"));
       }
     } else if (latestRef.current.threadList[0]?.id !== threadId) {
-      mutate("/api/thread");
+      mutate(swrKey("/api/thread"));
     }
   }, []);
 

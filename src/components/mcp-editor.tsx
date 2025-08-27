@@ -15,7 +15,8 @@ import { safe } from "ts-safe";
 import { useRouter } from "next/navigation";
 import { createDebounce, fetcher, isNull, safeJSONParse } from "lib/utils";
 import { handleErrorWithToast } from "ui/shared-toast";
-import { mutate } from "lib/utils";
+import { mutate } from "swr";
+import { swrKey } from "lib/utils";
 import { Loader } from "lucide-react";
 import {
   isMaybeMCPServerConfig,
@@ -151,7 +152,7 @@ export default function MCPEditor({
       )
       .ifOk(() => {
         toast.success(t("MCP.configurationSavedSuccessfully"));
-        mutate("/api/mcp/list");
+        mutate(swrKey("/api/mcp/list"));
         router.push("/mcp");
       })
       .ifFail(handleErrorWithToast)

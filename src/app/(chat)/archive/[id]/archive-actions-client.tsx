@@ -18,7 +18,8 @@ import { ArchiveDialog } from "@/components/archive-dialog";
 import { toast } from "sonner";
 import { Archive } from "app-types/archive";
 import { deleteArchiveAction } from "@/app/api/archive/actions";
-import { mutate } from "lib/utils";
+import { mutate } from "swr";
+import { swrKey } from "lib/utils";
 
 interface ArchiveActionsClientProps {
   archive: Archive;
@@ -41,7 +42,7 @@ export function ArchiveActionsClient({ archive }: ArchiveActionsClientProps) {
       console.error("Failed to delete archive:", error);
       toast.error(t("Archive.failedToDeleteArchive"));
     } finally {
-      mutate("/api/archive");
+      mutate(swrKey("/api/archive"));
       setIsDeleting(false);
       setDeleteDialogOpen(false);
     }

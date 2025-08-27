@@ -11,7 +11,9 @@ import { useState } from "react";
 import { safe } from "ts-safe";
 
 import { toast } from "sonner";
-import { mutate, fetcher } from "lib/utils";
+import { fetcher } from "lib/utils";
+import { mutate } from "swr";
+import { swrKey } from "lib/utils";
 import { useTranslations } from "next-intl";
 import { PencilIcon, Trash2Icon } from "lucide-react";
 
@@ -35,7 +37,7 @@ export function WorkflowContextMenu(props: WorkflowContextMenuProps) {
         }),
       )
         .ifOk(() => {
-          mutate("/api/workflow");
+          mutate(swrKey("/api/workflow"));
           setOpen(false);
         })
         .unwrap(),

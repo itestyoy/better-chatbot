@@ -4,7 +4,8 @@ import { appStore } from "@/app/store";
 import { useCompletion } from "@ai-sdk/react";
 import { ChatModel } from "app-types/chat";
 import { useCallback, useEffect } from "react";
-import { mutate } from "lib/utils";
+import { mutate } from "swr";
+import { swrKey } from "lib/utils";
 import { safe } from "ts-safe";
 
 export function useGenerateThreadTitle(option: {
@@ -60,7 +61,7 @@ export function useGenerateThreadTitle(option: {
           },
         });
       })
-        .ifOk(() => mutate("/api/thread"))
+        .ifOk(() => mutate(swrKey("/api/thread")))
         .watch(() => {
           appStore.setState((prev) => ({
             generatingTitleThreadIds: prev.generatingTitleThreadIds.filter(

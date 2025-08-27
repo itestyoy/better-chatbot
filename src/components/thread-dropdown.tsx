@@ -6,7 +6,8 @@ import { Archive, ChevronRight, Loader, PencilLine, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { type PropsWithChildren, useState } from "react";
 import { toast } from "sonner";
-import { mutate } from "lib/utils";
+import { mutate } from "swr";
+import { swrKey } from "lib/utils";
 import { safe } from "ts-safe";
 import { Button } from "ui/button";
 import {
@@ -74,7 +75,7 @@ export function ThreadDropdown({
         }
       })
       .ifOk(() => updateThreadAction(threadId, { title }))
-      .ifOk(() => mutate("/api/thread"))
+      .ifOk(() => mutate(swrKey("/api/thread")))
       .watch(({ isOk, error }) => {
         if (isOk) {
           toast.success(t("Chat.Thread.threadUpdated"));
@@ -102,7 +103,7 @@ export function ThreadDropdown({
         if (currentThreadId === threadId) {
           push.current("/");
         }
-        mutate("/api/thread");
+        mutate(swrKey("/api/thread"));
       })
       .unwrap();
   };
