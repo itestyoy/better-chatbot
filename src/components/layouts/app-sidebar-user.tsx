@@ -40,7 +40,7 @@ import { DiscordIcon } from "ui/discord-icon";
 import { useThemeStyle } from "@/hooks/use-theme-style";
 import { Session, User } from "better-auth";
 
-const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+const BASE_PATH = process.env.NEXT_BASE_PATH || "";
 
 export function AppSidebarUser({
   session,

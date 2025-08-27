@@ -6,7 +6,7 @@ const BUILD_OUTPUT = process.env.NEXT_STANDALONE_OUTPUT
   : undefined;
 
 // Add your basePath here, or read from env for flexibility
-const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+const BASE_PATH = process.env.NEXT_BASE_PATH || "";
 
 export default () => {
   const nextConfig: NextConfig = {

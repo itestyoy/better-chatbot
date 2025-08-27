@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getSessionCookie } from "better-auth/cookies";
 
-const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+const BASE_PATH = process.env.NEXT_BASE_PATH || "";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

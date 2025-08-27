@@ -10,7 +10,7 @@ import { Separator } from "ui/separator";
 import LightRays from "ui/light-rays";
 import Particles from "ui/particles";
 
-const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+const BASE_PATH = process.env.NEXT_BASE_PATH || "";
 
 // Simple date formatting function
 function formatTimeAgo(date: Date): string {

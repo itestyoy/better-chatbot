@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+const BASE_PATH = process.env.NEXT_BASE_PATH || "";
 
 export const swrKey = (path: string) => `${BASE_PATH}${path}`;
 

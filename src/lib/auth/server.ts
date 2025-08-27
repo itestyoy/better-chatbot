@@ -16,7 +16,7 @@ import { getAuthConfig } from "./config";
 import logger from "logger";
 import { redirect } from "next/navigation";
 
-const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+const BASE_PATH = process.env.NEXT_BASE_PATH || "";
 const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
 
 const {
