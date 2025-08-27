@@ -33,7 +33,7 @@ function parseSocialAuthConfigs() {
       redirectUri: `${redirectBase}/github`,
     };
 
-    const googleResult = GoogleConfigSchema.safeParse(githubConfig);
+    const githubResult = GitHubConfigSchema.safeParse(githubConfig);
     if (githubResult.success) {
       configs.github = githubResult.data;
       experimental_taintUniqueValue(
