@@ -44,6 +44,9 @@ import { useMounted } from "@/hooks/use-mounted";
 import { getStorageManager } from "lib/browser-stroage";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
+
+
 type Props = {
   threadId: string;
   initialMessages: Array<UIMessage>;
@@ -136,9 +139,9 @@ export default function ChatBot({ threadId, initialMessages }: Props) {
     sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
     transport: new DefaultChatTransport({
       prepareSendMessagesRequest: ({ messages, body, id }) => {
-        if (window.location.pathname !== `/chat/${threadId}`) {
+        if (window.location.pathname !== NEXT_PUBLIC_BASE_PATH + `/chat/${threadId}`) {
           console.log("replace-state");
-          window.history.replaceState({}, "", `/chat/${threadId}`);
+          window.history.replaceState({}, "", NEXT_PUBLIC_BASE_PATH + `/chat/${threadId}`);
         }
         const lastMessage = messages.at(-1)!;
 
