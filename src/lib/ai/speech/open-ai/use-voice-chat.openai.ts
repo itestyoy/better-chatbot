@@ -6,7 +6,7 @@ import {
   UIMessageWithCompleted,
   VoiceChatSession,
 } from "..";
-import { generateUUID } from "lib/utils";
+import { generateUUID, fetcher } from "lib/utils";
 import { TextPart, ToolUIPart } from "ai";
 import {
   OpenAIRealtimeServerEvent,
@@ -442,7 +442,7 @@ export function useOpenAIVoiceChat(
       });
       const offer = await pc.createOffer();
       await pc.setLocalDescription(offer);
-      const sdpResponse = await fetch(`https://api.openai.com/v1/realtime`, {
+      const sdpResponse = await fetcher(`https://api.openai.com/v1/realtime`, {
         method: "POST",
         body: offer.sdp,
         headers: {

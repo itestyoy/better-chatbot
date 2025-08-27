@@ -15,7 +15,7 @@ import { safe } from "ts-safe";
 import { useRouter } from "next/navigation";
 import { createDebounce, fetcher, isNull, safeJSONParse } from "lib/utils";
 import { handleErrorWithToast } from "ui/shared-toast";
-import { mutate } from "swr";
+import { mutate } from "lib/utils";
 import { Loader } from "lucide-react";
 import {
   isMaybeMCPServerConfig,

@@ -1,13 +1,20 @@
 import { type ClassValue, clsx } from "clsx";
 import { JSONSchema7 } from "json-schema";
 import { twMerge } from "tailwind-merge";
+import { mutate as baseMutate } from "swr";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+
+export function mutate(path: string, data?: any, shouldRevalidate?: boolean) {
+  return baseMutate(`${BASE_PATH}${path}`, data, shouldRevalidate);
+}
+
 export const fetcher = async (url: string, options?: RequestInit) => {
-  const res = await fetch(url, {
+  const res = await fetch(`${BASE_PATH}${url}`, {
     redirect: "follow",
     cache: "no-store",
     ...options,

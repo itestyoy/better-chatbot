@@ -6,7 +6,7 @@ import {
 import { useReactFlow } from "@xyflow/react";
 import { useObjectState } from "@/hooks/use-object-state";
 import { UINode } from "lib/ai/workflow/workflow.interface";
-import { cn, createDebounce, errorToString } from "lib/utils";
+import { cn, createDebounce, errorToString, fetcher } from "lib/utils";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { GraphEndEvent } from "ts-edge";
 import { allNodeValidate } from "lib/ai/workflow/node-validate";
@@ -217,7 +217,7 @@ ${workflow!.description ? `tool-description: ${workflow!.description}` : ""}`,
         });
       });
       try {
-        const response = await fetch(`/api/workflow/${workflow!.id}/execute`, {
+        const response = await fetcher(`/api/workflow/${workflow!.id}/execute`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

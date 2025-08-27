@@ -22,7 +22,7 @@ import { ExecuteTab } from "./node-config/execute-tab";
 import { useReactFlow } from "@xyflow/react";
 import { safe } from "ts-safe";
 import { handleErrorWithToast } from "ui/shared-toast";
-import { mutate } from "swr";
+import { mutate, fetcher } from "lib/utils";
 import { allNodeValidate } from "lib/ai/workflow/node-validate";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
@@ -65,7 +65,7 @@ export const WorkflowPanel = memo(
         setIsSaving(true);
         const close = addProcess();
         safe(() =>
-          fetch(`/api/workflow/${workflow.id}`, {
+          fetcher(`/api/workflow/${workflow.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -114,7 +114,7 @@ export const WorkflowPanel = memo(
         const close = addProcess();
         safe(() => onSave())
           .ifOk(() =>
-            fetch(`/api/workflow/${workflow.id}`, {
+            fetcher(`/api/workflow/${workflow.id}`, {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({

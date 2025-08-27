@@ -8,6 +8,9 @@ if (process.env.CI) {
   config();
 }
 
+const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+
 export default defineConfig({
   testDir: "./tests",
   timeout: 30 * 1000, // Increased timeout for agent operations
@@ -17,7 +20,7 @@ export default defineConfig({
   workers: process.env.CI ? 4 : undefined,
   reporter: process.env.CI ? "dot" : "list",
   use: {
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
+    baseURL: NEXT_PUBLIC_BASE_URL + BASE_PATH,
     ignoreHTTPSErrors: true,
     trace: "on-first-retry",
     screenshot: "only-on-failure",

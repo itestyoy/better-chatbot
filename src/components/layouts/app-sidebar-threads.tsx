@@ -29,7 +29,8 @@ import { fetcher } from "lib/utils";
 import { toast } from "sonner";
 import { useShallow } from "zustand/shallow";
 import { useRouter } from "next/navigation";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
+import { mutate } from "lib/utils";
 import { handleErrorWithToast } from "ui/shared-toast";
 import { useMemo, useState } from "react";
 

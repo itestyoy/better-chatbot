@@ -11,7 +11,7 @@ import { useState } from "react";
 import { safe } from "ts-safe";
 
 import { toast } from "sonner";
-import { mutate } from "swr";
+import { mutate, fetcher } from "lib/utils";
 import { useTranslations } from "next-intl";
 import { PencilIcon, Trash2Icon } from "lucide-react";
 
@@ -30,7 +30,7 @@ export function WorkflowContextMenu(props: WorkflowContextMenuProps) {
   const handleDeleteWorkflow = async () => {
     toast.promise(
       safe(() =>
-        fetch(`/api/workflow/${props.workflow.id}`, {
+        fetcher(`/api/workflow/${props.workflow.id}`, {
           method: "DELETE",
         }),
       )

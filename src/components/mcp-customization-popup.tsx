@@ -93,7 +93,7 @@ export function McpServerCustomizationContent({
         }),
     )
       .map((body) =>
-        fetch(`/api/mcp/server-customizations/${id}`, {
+        fetcher(`/api/mcp/server-customizations/${id}`, {
           method: "POST",
           body: JSON.stringify(body),
         }),
@@ -108,7 +108,7 @@ export function McpServerCustomizationContent({
   const handleDelete = () => {
     setIsProcessing(true);
     safe(() =>
-      fetch(`/api/mcp/server-customizations/${id}`, {
+      fetcher(`/api/mcp/server-customizations/${id}`, {
         method: "DELETE",
       }),
     )

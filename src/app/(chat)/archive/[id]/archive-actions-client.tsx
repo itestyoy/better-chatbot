@@ -18,7 +18,7 @@ import { ArchiveDialog } from "@/components/archive-dialog";
 import { toast } from "sonner";
 import { Archive } from "app-types/archive";
 import { deleteArchiveAction } from "@/app/api/archive/actions";
-import { mutate } from "swr";
+import { mutate } from "lib/utils";
 
 interface ArchiveActionsClientProps {
   archive: Archive;

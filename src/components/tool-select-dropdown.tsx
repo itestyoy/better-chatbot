@@ -71,7 +71,7 @@ import { authClient } from "auth/client";
 
 import { Alert, AlertDescription, AlertTitle } from "ui/alert";
 import { safe } from "ts-safe";
-import { mutate } from "swr";
+import { mutate } from "lib/utils";
 import { handleErrorWithToast } from "ui/shared-toast";
 import { useAgents } from "@/hooks/queries/use-agents";
 import { redriectMcpOauth } from "lib/ai/mcp/oauth-redirect";

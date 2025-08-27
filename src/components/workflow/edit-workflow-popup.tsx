@@ -34,9 +34,10 @@ import { handleErrorWithToast } from "ui/shared-toast";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { cn, createDebounce } from "lib/utils";
-import { mutate } from "swr";
+import { mutate } from "lib/utils";
 import { useTranslations } from "next-intl";
 import { BACKGROUND_COLORS } from "lib/const";
+import { fetcher } from "lib/utils";
 
 const colorUpdateDebounce = createDebounce();
 
@@ -114,7 +115,7 @@ export function EditWorkflowPopup({
     toast.promise(
       safe(() => zodSchema.parse(config))
         .map(async (body) => {
-          const response = await fetch("/api/workflow", {
+          const response = await fetcher("/api/workflow", {
             method: "POST",
             body: JSON.stringify(body),
           });

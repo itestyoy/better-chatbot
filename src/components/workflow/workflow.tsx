@@ -32,6 +32,7 @@ import { createDebounce, fetcher, generateUUID } from "lib/utils";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import useSWR from "swr";
 import { safe } from "ts-safe";
+import { fetcher } from "lib/utils";
 
 const nodeTypes = {
   default: DefaultNode,
@@ -326,7 +327,7 @@ function saveWorkflow(
   workflowId: string,
   diff: ReturnType<typeof extractWorkflowDiff>,
 ) {
-  return fetch(`/api/workflow/${workflowId}/structure`, {
+  return fetcher(`/api/workflow/${workflowId}/structure`, {
     method: "POST",
     body: JSON.stringify({
       nodes: diff.updateNodes.map((node) =>

@@ -6,7 +6,7 @@ import { Archive, ChevronRight, Loader, PencilLine, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { type PropsWithChildren, useState } from "react";
 import { toast } from "sonner";
-import { mutate } from "swr";
+import { mutate } from "lib/utils";
 import { safe } from "ts-safe";
 import { Button } from "ui/button";
 import {

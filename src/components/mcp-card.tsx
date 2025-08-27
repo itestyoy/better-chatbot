@@ -18,7 +18,7 @@ import JsonView from "ui/json-view";
 import { Tooltip, TooltipContent, TooltipTrigger } from "ui/tooltip";
 import { memo, useCallback, useMemo, useState } from "react";
 import Link from "next/link";
-import { mutate } from "swr";
+import { mutate } from "lib/utils";
 import { safe } from "ts-safe";
 
 import { handleErrorWithToast } from "ui/shared-toast";

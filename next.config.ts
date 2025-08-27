@@ -5,6 +5,9 @@ const BUILD_OUTPUT = process.env.NEXT_STANDALONE_OUTPUT
   ? "standalone"
   : undefined;
 
+// Add your basePath here, or read from env for flexibility
+const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+
 export default () => {
   const nextConfig: NextConfig = {
     output: BUILD_OUTPUT,
@@ -15,6 +18,8 @@ export default () => {
     env: {
       NO_HTTPS: process.env.NO_HTTPS,
     },
+    assetPrefix: BASE_PATH + "/",
+    basePath: BASE_PATH,
     experimental: {
       taint: true,
     },

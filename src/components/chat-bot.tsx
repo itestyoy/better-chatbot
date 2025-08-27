@@ -19,7 +19,7 @@ import {
 } from "ai";
 
 import { safe } from "ts-safe";
-import { mutate } from "swr";
+import { mutate } from "lib/utils";
 import { ChatApiSchemaRequestBody, ChatModel } from "app-types/chat";
 import { useToRef } from "@/hooks/use-latest";
 import { isShortcutEvent, Shortcuts } from "lib/keyboard-shortcuts";

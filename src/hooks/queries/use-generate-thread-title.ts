@@ -4,7 +4,7 @@ import { appStore } from "@/app/store";
 import { useCompletion } from "@ai-sdk/react";
 import { ChatModel } from "app-types/chat";
 import { useCallback, useEffect } from "react";
-import { mutate } from "swr";
+import { mutate } from "lib/utils";
 import { safe } from "ts-safe";
 
 export function useGenerateThreadTitle(option: {

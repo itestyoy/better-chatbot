@@ -71,7 +71,7 @@ export function UserInstructionsContent() {
   const savePreferences = async () => {
     safe(() => setIsSaving(true))
       .ifOk(() =>
-        fetch("/api/user/preferences", {
+        fetcher("/api/user/preferences", {
           method: "PUT",
           body: JSON.stringify(preferences),
         }),

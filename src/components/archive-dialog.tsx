@@ -21,7 +21,7 @@ import { safe } from "ts-safe";
 import { z } from "zod";
 import { handleErrorWithToast } from "ui/shared-toast";
 import { toast } from "sonner";
-import { mutate } from "swr";
+import { mutate } from "lib/utils";
 import { Archive } from "app-types/archive";
 import { fetcher } from "lib/utils";
 

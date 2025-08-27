@@ -2,6 +2,7 @@ import { tool as createTool } from "ai";
 import { JSONSchema7 } from "json-schema";
 import { jsonSchemaToZod } from "lib/json-schema-to-zod";
 import { safe } from "ts-safe";
+import { fetcher } from "lib/utils";
 
 // Exa API Types
 export interface ExaSearchRequest {
@@ -159,7 +160,7 @@ const fetchExa = async (endpoint: string, body: any): Promise<any> => {
     throw new Error("EXA_API_KEY is not configured");
   }
 
-  const response = await fetch(`${BASE_URL}${endpoint}`, {
+  const response = await fetcher(`${BASE_URL}${endpoint}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
