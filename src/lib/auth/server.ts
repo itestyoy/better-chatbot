@@ -17,6 +17,7 @@ import logger from "logger";
 import { redirect } from "next/navigation";
 
 const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
 
 const {
   emailAndPasswordEnabled,
@@ -26,7 +27,7 @@ const {
 
 export const auth = betterAuth({
   plugins: [nextCookies()],
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  baseURL: NEXT_PUBLIC_BASE_URL + BASE_PATH,
   database: drizzleAdapter(pgDb, {
     provider: "pg",
     schema: {
