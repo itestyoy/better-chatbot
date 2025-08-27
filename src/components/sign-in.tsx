@@ -67,8 +67,6 @@ export default function SignIn({
     authClient.signIn.social({ 
       provider,
       callbackURL: NEXT_PUBLIC_BASE_PATH + "/",
-      errorCallbackURL: NEXT_PUBLIC_BASE_PATH + "/",
-      newUserCallbackURL: NEXT_PUBLIC_BASE_PATH + "/",
     }).catch((e) => {
       toast.error(e.error);
     });
