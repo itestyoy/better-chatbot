@@ -1,6 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getSessionCookie } from "better-auth/cookies";
-import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
+
+// Add your basePath here, or read from env for flexibility
+const NEXT_PUBLIC_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const basePath = NEXT_PUBLIC_BASE_PATH.replace("/", "");
 
