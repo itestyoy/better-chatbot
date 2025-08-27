@@ -15,6 +15,7 @@ import { Button } from "ui/button";
 import { AtlassianIcon } from "ui/atlassian-icon";
 import { AsanaIcon } from "ui/asana-icon";
 import { GithubIcon } from "ui/github-icon";
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
 
 export const RECOMMENDED_MCPS = [
   {
@@ -118,7 +119,7 @@ export function MCPOverview() {
     params.set("name", mcp.name);
     params.set("config", JSON.stringify(mcp.config));
 
-    window.location.href = `/mcp/create?${params.toString()}`;
+    window.location.href = NEXT_PUBLIC_BASE_PATH + `/mcp/create?${params.toString()}`;
   };
 
   return (
