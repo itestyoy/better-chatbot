@@ -84,7 +84,7 @@ export default async function ArchivePage({
   const archive = await getArchiveWithThreads(id);
 
   if (!archive) {
-    redirect("/");
+    redirect(NEXT_PUBLIC_BASE_PATH + "/");
   }
 
   return (

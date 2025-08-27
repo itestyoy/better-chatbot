@@ -24,10 +24,12 @@ import {
 } from "lib/utils";
 
 import { safe } from "ts-safe";
-import { BASE_URL, IS_MCP_SERVER_REMOTE_ONLY, IS_VERCEL_ENV } from "lib/const";
+import { IS_MCP_SERVER_REMOTE_ONLY, IS_VERCEL_ENV } from "lib/const";
 import { UnauthorizedError } from "@modelcontextprotocol/sdk/client/auth.js";
 import { PgOAuthClientProvider } from "./pg-oauth-provider";
 import { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
+
+import { NEXT_PUBLIC_BASE_PATH, NEXT_PUBLIC_BASE_URL } from "lib/const";
 
 type ClientOptions = {
   autoDisconnectSeconds?: number;
@@ -135,7 +137,7 @@ export class MCPClient {
           response_types: ["code"],
           token_endpoint_auth_method: "none", // PKCE flow
           scope: "mcp:tools",
-          redirect_uris: [`${BASE_URL}/api/mcp/oauth/callback`],
+          redirect_uris: [`${NEXT_PUBLIC_BASE_URL}/${NEXT_PUBLIC_BASE_PATH}/api/mcp/oauth/callback`],
           software_id: "better-chatbot",
           software_version: "1.0.0",
         },

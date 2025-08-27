@@ -4,6 +4,8 @@ import ChatBot from "@/components/chat-bot";
 import { ChatMessage, ChatThread } from "app-types/chat";
 import { redirect, RedirectType } from "next/navigation";
 
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
+
 const fetchThread = async (
   threadId: string,
 ): Promise<(ChatThread & { messages: ChatMessage[] }) | null> => {
@@ -17,7 +19,7 @@ export default async function Page({
 
   const thread = await fetchThread(threadId);
 
-  if (!thread) redirect("/", RedirectType.replace);
+  if (!thread) redirect(NEXT_PUBLIC_BASE_PATH + "/", RedirectType.replace);
 
   return <ChatBot threadId={threadId} initialMessages={thread.messages} />;
 }

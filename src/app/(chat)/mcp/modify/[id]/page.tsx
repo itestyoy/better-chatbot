@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { mcpRepository } from "lib/db/repository";
 import { redirect } from "next/navigation";
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
 
 export default async function Page({
   params,
@@ -14,7 +15,7 @@ export default async function Page({
   const mcpClient = await mcpRepository.selectById(id);
 
   if (!mcpClient) {
-    return redirect("/mcp");
+    return redirect(NEXT_PUBLIC_BASE_PATH + "/mcp");
   }
 
   return (
