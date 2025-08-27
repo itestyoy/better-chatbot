@@ -77,7 +77,7 @@ export const WorkflowPanel = memo(
             if (res.status != 200) throw new Error(res.statusText);
           }),
         )
-          .ifOk(() => mutate(`/api/workflow/${workflow.id}`))
+          .ifOk(() => mutate(swrKey(`/api/workflow/${workflow.id}`)))
           .ifFail((e) => handleErrorWithToast(e))
           .watch(() => {
             setIsSaving(false);
