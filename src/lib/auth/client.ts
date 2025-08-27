@@ -4,5 +4,7 @@ import { createAuthClient } from "better-auth/react"; // make sure to import fro
 import { NEXT_PUBLIC_BASE_PATH, NEXT_PUBLIC_BASE_URL } from "lib/const";
 
 export const authClient = createAuthClient({
-    baseURL: NEXT_PUBLIC_BASE_URL + NEXT_PUBLIC_BASE_PATH + "/api/auth",
+    baseURL: NEXT_PUBLIC_BASE_URL,
+    basePath: NEXT_PUBLIC_BASE_PATH + "/api/auth",
 });
+
