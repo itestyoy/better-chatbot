@@ -83,6 +83,7 @@ export const getSession = async () => {
   const session = await auth.api
     .getSession({
       headers: await headers(),
+      baseURL: NEXT_PUBLIC_BASE_URL + BASE_PATH,
     })
     .catch((e) => {
       logger.error(e);
