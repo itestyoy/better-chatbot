@@ -11,6 +11,13 @@ import {
 import { experimental_taintUniqueValue } from "react";
 import { parseEnvBoolean } from "../utils";
 
+import { NEXT_PUBLIC_BASE_URL, NEXT_PUBLIC_BASE_PATH } from "lib/const";
+
+const redirectBase =
+  (process.env.NEXT_PUBLIC_BASE_URL ?? "") +
+  (NEXT_PUBLIC_BASE_PATH ?? "") +
+  "/api/auth/callback";
+
 function parseSocialAuthConfigs() {
   const configs: {
     github?: GitHubConfig;
@@ -19,10 +26,14 @@ function parseSocialAuthConfigs() {
   } = {};
 
   if (process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET) {
-    const githubResult = GitHubConfigSchema.safeParse({
+
+    const githubConfig: GitHubConfig = {
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    });
+      redirectUri: `${redirectBase}/github`,
+    };
+
+    const googleResult = GoogleConfigSchema.safeParse(githubConfig);
     if (githubResult.success) {
       configs.github = githubResult.data;
       experimental_taintUniqueValue(
@@ -41,6 +52,7 @@ function parseSocialAuthConfigs() {
     const googleConfig: GoogleConfig = {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      redirectUri: `${redirectBase}/google`,
       ...(forceAccountSelection && { prompt: "select_account" as const }),
     };
 
@@ -64,6 +76,7 @@ function parseSocialAuthConfigs() {
     const microsoftConfig: MicrosoftConfig = {
       clientId: process.env.MICROSOFT_CLIENT_ID,
       clientSecret: process.env.MICROSOFT_CLIENT_SECRET,
+      redirectUri: `${redirectBase}/microsoft`,
       tenantId,
       ...(forceAccountSelection && { prompt: "select_account" as const }),
     };
