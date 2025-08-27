@@ -14,20 +14,20 @@ export type SocialAuthenticationProvider = z.infer<
 export const GitHubConfigSchema = z.object({
   clientId: z.string().min(1),
   clientSecret: z.string().min(1),
-  redirectUri: z.string().min(1),
+  redirectURI: z.string().min(1),
 });
 
 export const GoogleConfigSchema = z.object({
   clientId: z.string().min(1),
   clientSecret: z.string().min(1),
-  redirectUri: z.string().min(1),
+  redirectURI: z.string().min(1),
   prompt: z.literal("select_account").optional(),
 });
 
 export const MicrosoftConfigSchema = z.object({
   clientId: z.string().min(1),
   clientSecret: z.string().min(1),
-  redirectUri: z.string().min(1),
+  redirectURI: z.string().min(1),
   tenantId: z.string().default("common"),
   prompt: z.literal("select_account").optional(),
 });

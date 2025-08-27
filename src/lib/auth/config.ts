@@ -30,7 +30,7 @@ function parseSocialAuthConfigs() {
     const githubConfig: GitHubConfig = {
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      redirectUri: `${redirectBase}/github`,
+      redirectURI: `${redirectBase}/github`,
     };
 
     const githubResult = GitHubConfigSchema.safeParse(githubConfig);
@@ -52,7 +52,7 @@ function parseSocialAuthConfigs() {
     const googleConfig: GoogleConfig = {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      redirectUri: `${redirectBase}/google`,
+      redirectURI: `${redirectBase}/google`,
       ...(forceAccountSelection && { prompt: "select_account" as const }),
     };
 
@@ -76,7 +76,7 @@ function parseSocialAuthConfigs() {
     const microsoftConfig: MicrosoftConfig = {
       clientId: process.env.MICROSOFT_CLIENT_ID,
       clientSecret: process.env.MICROSOFT_CLIENT_SECRET,
-      redirectUri: `${redirectBase}/microsoft`,
+      redirectURI: `${redirectBase}/microsoft`,
       tenantId,
       ...(forceAccountSelection && { prompt: "select_account" as const }),
     };
