@@ -10,6 +10,8 @@ import { Separator } from "ui/separator";
 import LightRays from "ui/light-rays";
 import Particles from "ui/particles";
 
+const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+
 // Simple date formatting function
 function formatTimeAgo(date: Date): string {
   const now = new Date();
@@ -76,7 +78,7 @@ export default async function ArchivePage({
   const session = await getSession();
 
   if (!session?.user?.id) {
-    redirect("/sign-in");
+    redirect(BASE_PATH + "/sign-in");
   }
 
   const archive = await getArchiveWithThreads(id);

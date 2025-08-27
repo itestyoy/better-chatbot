@@ -40,6 +40,8 @@ import { DiscordIcon } from "ui/discord-icon";
 import { useThemeStyle } from "@/hooks/use-theme-style";
 import { Session, User } from "better-auth";
 
+const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+
 export function AppSidebarUser({
   session,
 }: { session?: { session: Session; user: User } }) {
@@ -50,7 +52,7 @@ export function AppSidebarUser({
 
   const logout = () => {
     authClient.signOut().finally(() => {
-      window.location.href = "/sign-in";
+      window.location.href = BASE_PATH + "/sign-in";
     });
   };
 

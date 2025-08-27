@@ -16,6 +16,8 @@ import { getAuthConfig } from "./config";
 import logger from "logger";
 import { redirect } from "next/navigation";
 
+const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+
 const {
   emailAndPasswordEnabled,
   signUpEnabled,
@@ -87,7 +89,7 @@ export const getSession = async () => {
     });
   if (!session) {
     logger.error("No session found");
-    redirect("/sign-in");
+    redirect(BASE_PATH + "/sign-in");
   }
   return session!;
 };

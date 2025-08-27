@@ -12,6 +12,8 @@ import { buildUserSystemPrompt } from "lib/ai/prompts";
 import { userRepository } from "lib/db/repository";
 import { colorize } from "consola/utils";
 
+const BASE_PATH = process.env.NEXT_BASE_PATH || "/chat";
+
 const logger = globalLogger.withDefaults({
   message: colorize("blackBright", `Temporary Chat API: `),
 });
@@ -23,7 +25,7 @@ export async function POST(request: Request) {
     const session = await getSession();
 
     if (!session?.user.id) {
-      return redirect("/sign-in");
+      return redirect(BASE_PATH + "/sign-in");
     }
 
     const { messages, chatModel, instructions } = json as {
