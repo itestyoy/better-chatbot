@@ -8,7 +8,7 @@ if (process.env.CI) {
   config();
 }
 
-const BASE_PATH = process.env.NEXT_BASE_PATH || "";
+const NEXT_PUBLIC_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
 
 export default defineConfig({
@@ -20,7 +20,7 @@ export default defineConfig({
   workers: process.env.CI ? 4 : undefined,
   reporter: process.env.CI ? "dot" : "list",
   use: {
-    baseURL: NEXT_PUBLIC_BASE_URL + BASE_PATH,
+    baseURL: NEXT_PUBLIC_BASE_URL + NEXT_PUBLIC_BASE_PATH,
     ignoreHTTPSErrors: true,
     trace: "on-first-retry",
     screenshot: "only-on-failure",

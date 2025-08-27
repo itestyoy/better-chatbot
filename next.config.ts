@@ -6,7 +6,7 @@ const BUILD_OUTPUT = process.env.NEXT_STANDALONE_OUTPUT
   : undefined;
 
 // Add your basePath here, or read from env for flexibility
-const BASE_PATH = process.env.NEXT_BASE_PATH || "";
+const NEXT_PUBLIC_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export default () => {
   const nextConfig: NextConfig = {
@@ -18,8 +18,8 @@ export default () => {
     env: {
       NO_HTTPS: process.env.NO_HTTPS,
     },
-    assetPrefix: BASE_PATH + "/",
-    basePath: BASE_PATH,
+    assetPrefix: NEXT_PUBLIC_BASE_PATH + "/",
+    basePath: NEXT_PUBLIC_BASE_PATH,
     experimental: {
       taint: true,
     },

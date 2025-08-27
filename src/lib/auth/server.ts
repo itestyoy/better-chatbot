@@ -15,9 +15,7 @@ import { getAuthConfig } from "./config";
 
 import logger from "logger";
 import { redirect } from "next/navigation";
-
-const BASE_PATH = process.env.NEXT_BASE_PATH || "";
-const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+import { NEXT_PUBLIC_BASE_PATH, NEXT_PUBLIC_BASE_URL } from "lib/const";
 
 const {
   emailAndPasswordEnabled,
@@ -27,7 +25,7 @@ const {
 
 export const auth = betterAuth({
   plugins: [nextCookies()],
-  baseURL: NEXT_PUBLIC_BASE_URL + BASE_PATH,
+  baseURL: NEXT_PUBLIC_BASE_URL + NEXT_PUBLIC_BASE_PATH,
   basePath: '/api/auth',
   database: drizzleAdapter(pgDb, {
     provider: "pg",
@@ -91,7 +89,7 @@ export const getSession = async () => {
     });
   if (!session) {
     logger.error("No session found");
-    redirect(BASE_PATH + "/sign-in");
+    redirect(NEXT_PUBLIC_BASE_PATH + "/sign-in");
   }
   return session!;
 };

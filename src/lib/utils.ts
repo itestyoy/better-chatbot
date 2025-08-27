@@ -1,17 +1,16 @@
 import { type ClassValue, clsx } from "clsx";
 import { JSONSchema7 } from "json-schema";
 import { twMerge } from "tailwind-merge";
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const BASE_PATH = process.env.NEXT_BASE_PATH || "";
-
-export const swrKey = (path: string) => `${BASE_PATH}${path}`;
+export const swrKey = (path: string) => `${NEXT_PUBLIC_BASE_PATH}${path}`;
 
 export const fetcher = async (url: string, options?: RequestInit) => {
-  const res = await fetch(`${BASE_PATH}${url}`, {
+  const res = await fetch(`${NEXT_PUBLIC_BASE_PATH}${url}`, {
     redirect: "follow",
     cache: "no-store",
     ...options,

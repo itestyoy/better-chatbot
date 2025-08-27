@@ -12,7 +12,7 @@ import { buildUserSystemPrompt } from "lib/ai/prompts";
 import { userRepository } from "lib/db/repository";
 import { colorize } from "consola/utils";
 
-const BASE_PATH = process.env.NEXT_BASE_PATH || "";
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
 
 const logger = globalLogger.withDefaults({
   message: colorize("blackBright", `Temporary Chat API: `),
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     const session = await getSession();
 
     if (!session?.user.id) {
-      return redirect(BASE_PATH + "/sign-in");
+      return redirect(NEXT_PUBLIC_BASE_PATH + "/sign-in");
     }
 
     const { messages, chatModel, instructions } = json as {

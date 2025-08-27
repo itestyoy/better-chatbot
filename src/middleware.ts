@@ -1,7 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getSessionCookie } from "better-auth/cookies";
-
-const BASE_PATH = process.env.NEXT_BASE_PATH || "";
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -16,7 +15,7 @@ export async function middleware(request: NextRequest) {
   const sessionCookie = getSessionCookie(request);
 
   if (!sessionCookie) {
-    return NextResponse.redirect(new URL(BASE_PATH + "/sign-in", request.url));
+    return NextResponse.redirect(new URL(NEXT_PUBLIC_BASE_PATH + "/sign-in", request.url));
   }
   return NextResponse.next();
 }

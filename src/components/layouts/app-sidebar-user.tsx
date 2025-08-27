@@ -29,6 +29,7 @@ import {
 import { useTheme } from "next-themes";
 import { appStore } from "@/app/store";
 import { BASE_THEMES, COOKIE_KEY_LOCALE, SUPPORTED_LOCALES } from "lib/const";
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
 import { capitalizeFirstLetter, cn, swrKey } from "lib/utils";
 import { authClient } from "auth/client";
 import { useTranslations } from "next-intl";
@@ -40,8 +41,6 @@ import { DiscordIcon } from "ui/discord-icon";
 import { useThemeStyle } from "@/hooks/use-theme-style";
 import { Session, User } from "better-auth";
 
-const BASE_PATH = process.env.NEXT_BASE_PATH || "";
-
 export function AppSidebarUser({
   session,
 }: { session?: { session: Session; user: User } }) {
@@ -52,7 +51,7 @@ export function AppSidebarUser({
 
   const logout = () => {
     authClient.signOut().finally(() => {
-      window.location.href = BASE_PATH + "/sign-in";
+      window.location.href = NEXT_PUBLIC_BASE_PATH + "/sign-in";
     });
   };
 
@@ -83,7 +82,7 @@ export function AppSidebarUser({
               <Avatar className="rounded-full size-8 border">
                 <AvatarImage
                   className="object-cover"
-                  src={user?.image || BASE_PATH + "/pf.png"}
+                  src={user?.image || NEXT_PUBLIC_BASE_PATH + "/pf.png"}
                   alt={user?.name || ""}
                 />
                 <AvatarFallback>{user?.name?.slice(0, 1) || ""}</AvatarFallback>
@@ -101,7 +100,7 @@ export function AppSidebarUser({
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-full">
                   <AvatarImage
-                    src={user?.image || BASE_PATH + "/pf.png"}
+                    src={user?.image || NEXT_PUBLIC_BASE_PATH + "/pf.png"}
                     alt={user?.name || ""}
                   />
                   <AvatarFallback className="rounded-lg">
