@@ -12,6 +12,7 @@ export default () => {
   const nextConfig: NextConfig = {
     output: BUILD_OUTPUT,
     cleanDistDir: true,
+    trailingSlash: true, 
     devIndicators: {
       position: "bottom-right",
     },
