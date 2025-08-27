@@ -2,6 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getSessionCookie } from "better-auth/cookies";
 import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
 
+const basePath = NEXT_PUBLIC_BASE_PATH.replace("/", "");
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -22,6 +24,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    `/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|${NEXT_PUBLIC_BASE_PATH}api/auth|${NEXT_PUBLIC_BASE_PATH}sign-in|${NEXT_PUBLIC_BASE_PATH}sign-up).*)`,
+    `/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|${basePath}/api/auth|${basePath}/sign-in|${basePath}/sign-up).*)`,
   ],
 };
