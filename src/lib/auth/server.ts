@@ -15,6 +15,7 @@ import { getAuthConfig } from "./config";
 
 import logger from "logger";
 import { redirect } from "next/navigation";
+import { NEXT_PUBLIC_BASE_PATH } from "lib/const";
 
 const {
   emailAndPasswordEnabled,
