@@ -14,7 +14,7 @@ import { parseEnvBoolean } from "../utils";
 import { NEXT_PUBLIC_BASE_URL, NEXT_PUBLIC_BASE_PATH } from "lib/const";
 
 const redirectBase =
-  (process.env.NEXT_PUBLIC_BASE_URL ?? "") +
+  (NEXT_PUBLIC_BASE_URL ?? "") +
   (NEXT_PUBLIC_BASE_PATH ?? "") +
   "/api/auth/callback";
 
