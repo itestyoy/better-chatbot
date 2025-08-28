@@ -138,6 +138,7 @@ export default function ChatBot({ threadId, initialMessages }: Props) {
     id: threadId,
     sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
     transport: new DefaultChatTransport({
+      api: NEXT_PUBLIC_BASE_PATH + '/api/chat',
       prepareSendMessagesRequest: ({ messages, body, id }) => {
         if (window.location.pathname !== NEXT_PUBLIC_BASE_PATH + `/chat/${threadId}`) {
           console.log("replace-state");
@@ -163,7 +164,6 @@ export default function ChatBot({ threadId, initialMessages }: Props) {
         return { body: requestBody };
       },
     }),
-    api: NEXT_PUBLIC_BASE_PATH + '/api/chat',
     messages: initialMessages,
     generateId: generateUUID,
     experimental_throttle: 100,
