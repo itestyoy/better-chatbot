@@ -14,14 +14,8 @@ export const FILE_BASED_MCP_CONFIG =
   process.env.FILE_BASED_MCP_CONFIG === "true";
 
 export const NEXT_PUBLIC_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
-export const NEXT_PUBLIC_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || `http://localhost:${process.env.PORT || 3000}`
-
-export const COOKIE_KEY_SIDEBAR_STATE = "sidebar:state";
-export const COOKIE_KEY_LOCALE = "i18n:locale";
-
-export const BASE_URL = (() => {
-  if (process.env.BETTER_AUTH_URL) return process.env.BETTER_AUTH_URL;
-
+export const NEXT_PUBLIC_BASE_URL = (() => {
+  
   if (IS_VERCEL_ENV) {
     const vercelDomain =
       (process.env.VERCEL_ENV == "production"
@@ -31,8 +25,11 @@ export const BASE_URL = (() => {
     if (vercelDomain) return `https://${vercelDomain}`;
   }
 
-  return NEXT_PUBLIC_BASE_URL + NEXT_PUBLIC_BASE_PATH;
+  return process.env.NEXT_PUBLIC_BASE_URL || `http://localhost:${process.env.PORT || 3000}`
 })().replace(/\/+$/, "");
+
+export const COOKIE_KEY_SIDEBAR_STATE = "sidebar:state";
+export const COOKIE_KEY_LOCALE = "i18n:locale";
 
 export const BASE_THEMES = [
   "default",
