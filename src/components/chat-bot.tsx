@@ -163,6 +163,7 @@ export default function ChatBot({ threadId, initialMessages }: Props) {
         return { body: requestBody };
       },
     }),
+    api: NEXT_PUBLIC_BASE_PATH + '/api/chat',
     messages: initialMessages,
     generateId: generateUUID,
     experimental_throttle: 100,
