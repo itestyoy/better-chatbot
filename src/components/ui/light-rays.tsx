@@ -84,6 +84,11 @@ const LightRays: React.FC<LightRaysProps> = ({
 }) => {
   const { theme } = useTheme();
 
+  // Disable light rays in light theme
+  if (theme === "light") {
+    return null;
+  }
+
   const raysColor = useMemo(() => {
     if (defaultColor) return defaultColor;
     if (theme === "dark") {
