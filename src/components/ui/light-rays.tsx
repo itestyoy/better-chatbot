@@ -84,11 +84,6 @@ const LightRays: React.FC<LightRaysProps> = ({
 }) => {
   const { theme } = useTheme();
 
-  // Disable light rays in light theme
-  if (theme === "light") {
-    return null;
-  }
-
   const raysColor = useMemo(() => {
     if (defaultColor) return defaultColor;
     if (theme === "dark") {
@@ -146,6 +141,9 @@ const LightRays: React.FC<LightRaysProps> = ({
   }, []);
 
   useEffect(() => {
+    // Don't initialize WebGL in light theme
+    if (theme === "light") return;
+
     if (!isVisible || !containerRef.current) return;
 
     if (cleanupFunctionRef.current) {
@@ -427,6 +425,7 @@ void main() {
       }
     };
   }, [
+    theme,
     isVisible,
     raysOrigin,
     raysColor,
