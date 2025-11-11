@@ -360,6 +360,15 @@ void main() {
         }
       };
 
+      // Watch for container size changes (e.g., sidebar toggle)
+      const resizeObserver = new ResizeObserver(() => {
+        updatePlacement();
+      });
+
+      if (containerRef.current) {
+        resizeObserver.observe(containerRef.current);
+      }
+
       window.addEventListener("resize", updatePlacement);
       window.addEventListener("beforeunload", handleBeforeUnload);
       updatePlacement();
@@ -371,6 +380,7 @@ void main() {
           animationIdRef.current = null;
         }
 
+        resizeObserver.disconnect();
         window.removeEventListener("resize", updatePlacement);
         window.removeEventListener("beforeunload", handleBeforeUnload);
 

@@ -145,6 +145,13 @@ const Particles: React.FC<ParticlesProps> = ({
       renderer.setSize(width, height);
       camera.perspective({ aspect: gl.canvas.width / gl.canvas.height });
     };
+
+    // Watch for container size changes (e.g., sidebar toggle)
+    const resizeObserver = new ResizeObserver(() => {
+      resize();
+    });
+    resizeObserver.observe(container);
+
     window.addEventListener("resize", resize, false);
     resize();
 
@@ -248,6 +255,7 @@ const Particles: React.FC<ParticlesProps> = ({
     animationFrameId = requestAnimationFrame(update);
 
     return () => {
+      resizeObserver.disconnect();
       window.removeEventListener("resize", resize);
       window.removeEventListener("beforeunload", handleBeforeUnload);
       if (moveParticlesOnHover) {
